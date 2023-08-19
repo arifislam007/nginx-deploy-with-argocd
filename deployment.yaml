@@ -14,6 +14,6 @@ spec:
     spec:
       containers:
       - name: nginx
-        image: arifislam/my-nginx:v3  # Updated Docker image
+        image: arifislam/my-nginx:v4  # Updated Docker image
         ports:
         - containerPort: 80
