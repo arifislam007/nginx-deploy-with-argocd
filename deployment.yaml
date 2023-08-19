@@ -14,6 +14,6 @@ spec:
     spec:
       containers:
       - name: nginx
-        image: arifislam/arifislam/my-nginx:v8
+        image: arifislam/remote-nginx:v1
         ports:
         - containerPort: 80
