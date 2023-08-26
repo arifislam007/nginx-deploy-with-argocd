@@ -10,7 +10,7 @@ pipeline {
         stage('SSH transfer') {
             steps {
                 script {
-                    def remoteDirectory = '/opt/dproject1'  // Replace with your remote destination directory
+                    def remoteDirectory = '/opt/dproject2'  // Replace with your remote destination directory
                     
                     sshPublisher(
                         continueOnError: false,
