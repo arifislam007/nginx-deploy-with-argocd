@@ -19,10 +19,6 @@ pipeline {
 								verbose: true,
 								transfers: [
 									sshTransfer(
-										sourceFiles: "/var/lib/jenkins/workspace/cicd-project-2/",
-										removePrefix: "/var/lib/jenkins/workspace/cicd-project-2/",
-										remoteDirectory: "/opt/dporject1",
-										execCommand: "cd /opt/dproject1",
 										execCommand: "pwd",
 									)
 								]
