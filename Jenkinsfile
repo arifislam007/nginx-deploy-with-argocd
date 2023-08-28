@@ -7,26 +7,21 @@ pipeline {
                 git branch: 'main', url: 'https://github.com/arifislam007/nginx-deploy-with-argocd.git'
             }
         }
-        stage('SSH transfer') {
+        stage('Publish Artifact') {
             steps {
                 script {
-                    def remoteDirectory = '/opt/dproject1'  // Replace with your remote destination directory
-
-                    def sshPublisherConfig = [
-                        configName: 'dockerhost', // Use the SSH server configuration name you set up
-                        transfers: [
-                            [
-                                sourceFiles: "${env.WORKSPACE}/**",
-                                remoteDirectory: remoteDirectory,
-                                removePrefix: env.WORKSPACE
-                            ]
-                        ]
+                    def remoteDir = "/opt/dproject1"
+                    def remoteServer = [
+                        // Replace these values with your remote server details
+                        host: '10.200.205.187',
+                        user: 'dockeradmin',
+                        keyFile: credentials('dockerhost'),
                     ]
-
-                    publishOverSSH(credentialsConfigurer: [
-                        $class: 'ManuallyConfiguredCredentialsImpl',
-                        credentialsId: sshPublisherConfig.configName
-                    ], transfers: sshPublisherConfig.transfers)
+                    
+                    // Copy the artifact to the remote server using SSH
+                    sshPut remote: remoteServer,
+                           from: "target/*",
+                           into: remoteDir
                 }
             }
         }
